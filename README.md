@@ -1,4 +1,4 @@
-# Projet web 2024 - Groupe XX
+# Projet web 2024 - Groupe 26
 
 Ce repository GitHub reprend le boilerplate du code de votre projet web, ou la base à partir de laquelle vous allez déveloper.
 
