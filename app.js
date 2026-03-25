@@ -41,7 +41,7 @@ const coachesRouter = require('./routes/coaches.js');
 const discussionsRouter = require('./routes/discussions.js');
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 // Setup views folder and handlebar engine
 app.set('views', path.join(__dirname, 'views'));
@@ -79,4 +79,6 @@ app.use((error, req, res, next) => {
 });
 
 // Launch server
-app.listen(port, () => console.log('App listening on port ' + port));
+app.listen(port, () => {
+  console.log(`Server listening on port ${port}`);
+});

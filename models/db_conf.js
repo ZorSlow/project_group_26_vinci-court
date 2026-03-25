@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const Database = require('better-sqlite3');
 
-const dbFile = path.join(__dirname, '..', 'data', 'project.db');
+const dbFile = process.env.DB_FILE || path.join(__dirname, '..', 'data', 'project.db');
 
 // créer le dossier parent si nécessaire
 fs.mkdirSync(path.dirname(dbFile), { recursive: true });
