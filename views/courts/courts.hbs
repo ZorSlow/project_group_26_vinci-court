@@ -18,7 +18,7 @@
         </tr>
          {{#each listCourt}}
         <tr>
-            <td><a href="http://localhost:3000/courts/details?id={{this.tennis_court_id}}">{{this.name}}</a></td>              
+            <td><a href="/courts/details?id={{this.tennis_court_id}}">{{this.name}}</a></td>              
             <td>{{this.flooring_type}}</td>
         
          {{#if ../session.isUserCoach}}
