@@ -1,0 +1,36 @@
+<section id="table_courts" class="background">
+    <br>
+    <h1>Listes des Terrains</h1>
+    
+    <h2>noms et types de terrains</h2>
+    <br>
+    <br>
+
+    <table >
+        <tr>
+            <th>nom :</th>
+            <th>type :</th>
+            {{#if session.isUserCoach}}
+                <th>modification :</th>    
+            {{/if}}
+            
+
+        </tr>
+         {{#each listCourt}}
+        <tr>
+            <td><a href="http://localhost:3000/courts/details?id={{this.tennis_court_id}}">{{this.name}}</a></td>              
+            <td>{{this.flooring_type}}</td>
+        
+         {{#if ../session.isUserCoach}}
+            <td>
+                <form action="/courts/update" method="get">
+                    <input type="hidden" name="id" value="{{this.tennis_court_id}}">
+                    <button type="submit">modification</button>
+                </form>
+            </td>
+         {{/if}}
+        {{/each}}
+        </tr>
+    </table>
+    <p id="commentaire_cliquer_nom"> Pour plus de détails, cliquer sur le nom du terrain  </p>
+</section>

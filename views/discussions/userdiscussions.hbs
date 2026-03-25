@@ -1,0 +1,23 @@
+<section>
+        <h1>Messages</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Message</th>
+                    <th>Réponse</th>
+                    <th>Pour</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each discussions}}
+                <tr>
+                    <td>{{this.message_text}} </td>
+                    <td><p>{{#if this.response_text}}{{this.response_text}}{{else}}Pas de réponse{{/if}}</p> </td>
+                    <td>
+                        {{this.firstname}} {{this.surname}}
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </section>

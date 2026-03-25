@@ -1,0 +1,15 @@
+<section>
+<div>
+        <h1>Mettre à jour le coach</h1>
+    
+    <section>
+        <form action="/coaches/modifybio?coach={{idCoach}}" method="POST">
+            <label for="biography">Biographie:</label><br>
+            <textarea id="" name="biography" rows="4" cols="50">{{coach.biography}}</textarea><br><br>
+            <label for="picture_path">Chemin de l'image:</label>
+            <input type="file" id="" name="picture_path" value="{{coach.picture_path}}"><br><br>
+            <button type="submit">Mettre à jour</button>
+        </form>
+    </section>
+</div>
+</section>

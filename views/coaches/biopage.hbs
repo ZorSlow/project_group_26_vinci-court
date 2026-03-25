@@ -1,0 +1,32 @@
+<section>
+    <div>
+        <div>
+            <h1>Notre Coach</h1>
+            <div>
+                <div>
+                    <img src="{{coach.picture_path}}" alt="">
+                </div>
+                <div>
+                    <h2>{{coach.firstname}} {{coach.surname}}</h2>
+                    <p>{{coach.email}}</p>
+                    <p>{{coach.biography}}</p>
+                </div>
+            </div>
+            <div>
+                {{#if matchingUser}}
+                    <a href="/coaches/modifybio?coach={{idCoach}}">Mettre à jour</a>
+                {{/if}}
+            </div>
+            {{#if (eq session.user.status "normal")}}
+    <div>
+        <h3>Contacter le coach</h3>
+        <form action="/discussions/sendToCoach?coach={{idCoach}}" method="post"> 
+        <input type="hidden" name="idCoach" value="{{idCoach}}">
+            <textarea  name="message" placeholder="Votre message" required></textarea>
+            <button type="submit">Envoyer</button>
+        </form>
+    </div>
+{{/if}}
+        </div>
+    </div>
+</section>

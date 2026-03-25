@@ -1,0 +1,61 @@
+{{#if tournament}}
+<section id="table_tournamentsDetails" class="backgrounde">
+    <img src={{tournament.imageBanner}} alt="Bannière du tournoi">
+    <div class="tournament-info">
+        <H1>Details des tournois</H1>
+
+
+        <table>
+            <tr>
+
+                <th>Nom</th>
+                <td>{{tournament.uniqueName}}</td>
+                <th>Date</th>
+                <td>{{tournament.dateTournaments}}</td>
+                <th>Nom créateur du tournoi</th>
+                <td>{{tournament.firstnameCreator}} {{tournament.surnameCreator}}</td>
+                <th>Nombre d'inscrits</th>
+                <td>{{tournament.nombre_inscrits}}</td>
+                <th>Nombre maximum de participans</th>
+                <td>{{tournament.nbMaxParticipants}}</td>
+            </tr>
+
+            <!-- condition pour afficher les boutons d'inscription ou de désinsciption-->
+            <!-- tournamentNotPassed && userIsLoggedIn && userIsNotRegistered && maxParticipantsNotReached -->
+
+            {{#if (and session.user tournamentNotPassed)}}
+            {{#if userIsNotRegistered}}
+            {{#if maxParticipantsNotReached}}
+            <td>
+                <!-- Formulaire d'inscription -->
+                <form action="/tournaments/register" method="post">
+                    <input type="hidden" name="tournamentId" value="{{tournament.tournamentId}}">
+                    <input type="submit" value="Inscription">
+                </form>
+
+            </td>
+            {{/if}}
+            {{else}}
+            <td>
+                <!-- Formulaire de désinscription -->
+                <form action="/tournaments/unregister" method="post">
+                    <input type="hidden" name="tournamentId" value="{{tournament.tournamentId}}">
+                    <input type="submit" value="Se désinscrire">
+                </form>
+            </td>
+            {{/if}}
+            {{/if}}
+
+        </table>
+    </div>
+</section>
+{{else}}
+<!--message d'erreurs page details d'un tournoi -->
+{{#if errorTournamentlist}}
+<section>
+    <p class="error-message">{{ errorTournamentlist}}</p>
+</section>
+
+{{/if}}
+
+{{/if}}

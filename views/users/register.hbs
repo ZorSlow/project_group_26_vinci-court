@@ -1,0 +1,42 @@
+<section class="background">
+    <h1>S'enregistrer</h1>
+    <form action="/users/register" method="post" class="login-container">
+        <div>
+            <label for="firstname">Nom</label>
+            <input type="text" name="firstname" placeholder="Nom">
+        </div>
+        <div>
+            <label for="surname">Prenom</label>
+            <input type="text" name="surname" placeholder="Prénom">
+        </div>
+
+        <div>
+            <label for="email">Email</label>
+            <input type="email" name="email" placeholder="E-Mail">
+        </div>
+
+        <div>
+            <label for="password">Password</label>
+            <input type="password" name="password" placeholder="Mot de passe">
+        </div>
+
+        <div>
+            <label for="password">Password</label>
+            <input type="password" name="passwordConfirmation" placeholder="Confirmer le mot de passe">
+        </div>
+
+            <input type="submit" class="inputlog" value="S'enregistrer">
+
+    </form>
+</section>
+{{#if errors}}
+<section>
+    <h2>Erreur(s) :</h2>
+    <ul>
+        {{#each errors}}
+        <li>{{this}}</li> <br>
+        {{/each}}
+    </ul>
+</section>
+
+{{/if}}

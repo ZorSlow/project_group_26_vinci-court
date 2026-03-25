@@ -1,0 +1,37 @@
+{{#if errors}}
+
+<section>
+{{#each errors}}
+<p>{{errorMessage}}</p>
+
+{{/each}}
+
+</section>
+
+
+{{else}}
+<section>
+  <div>
+    <h2> Liste des coaches de notre équipe :</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Nom</th>
+          <th>Prénom</th>
+          <th>E-mail</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each listeCoach}}
+        <tr>
+          <td><a href="/coaches/biopage?coach={{user_id}}">{{surname}}</a></td>
+          <td>{{firstname}}</td>
+          <td>{{email}}</td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</section>
+
+{{/if}}

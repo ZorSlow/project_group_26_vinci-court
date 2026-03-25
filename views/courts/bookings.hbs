@@ -1,0 +1,23 @@
+<section id="table_courts" class="backgrounde">
+    <h1>Voici les dates de reservations</h1>
+   <table>
+    <tr>
+        <th>nom terrain</th>
+        <th>date </th>
+        <th>enlever</th>
+    </tr>
+   {{#each terrain }}
+    <tr>
+        <td>{{this.name}}</td>
+        <td>{{this.date_booking}}</td>
+        <td>
+            <form action="/courts/unbook" method="post">
+                <input type="hidden" name="date_booking" value="{{date_booking}}">
+                <input type="hidden" name="tennis_court_id" value="{{tennis_court_id}}">
+                <button type="submit">supprimer</button>
+            </form>
+        </td>
+    </tr>
+   {{/each}}
+   </table>
+</section>

@@ -1,0 +1,49 @@
+{{#if detailsCourt}}
+    <section class="backgrounde">
+    <h1>page de mise à jour</h1>
+            <form action="/courts/update" method="post">
+                <div>
+                    <input type="hidden" name="tennis_court_id" value="{{detailsCourt.tennis_court_id}}"required>
+                   
+                </div>
+                <div>
+                    <label for="name">nom :</label>
+                    <input type="text" name="name" value="{{detailsCourt.name}}" required>
+                     {{#if errorMessage.name}}
+                        <div>{{errorMessage.name}}</div>
+                    {{/if}}
+                </div>
+                <div>
+                    <label for="flooring_type"> type de sol :</label>
+                    <select name="flooring_type" required>
+                        <option {{#if (eq detailsCourt.flooring_type "herbe")}}
+                                selected
+                                {{/if}} value="herbe"> herbe</option>
+                        <option {{#if (eq detailsCourt.flooring_type "synthétique")}}
+                                selected
+                                {{/if}} value="synthétique"> synthétique</option> 
+                        <option {{#if (eq detailsCourt.flooring_type "terre battue")}}
+                                selected
+                                {{/if}} value="terre battue">terre battue</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="location"> localisation :</label>
+                    <input type="text" name="location" value="{{detailsCourt.location}}" required>
+                    {{#if errorMessage}}
+                        <div>{{errorMessage.location}}</div>
+                    {{/if}}
+                </div>
+                <div>
+                    <label for="picture_path">image :</label>
+                    
+                    <input type="file" name="picture_path" src="{{detailsCourt.picture_path}}">
+                </div>
+
+                <button class="bouton-maj" type="submit">mettre à jour</button>
+            </form>
+           
+</section>
+{{else}}
+<h1>ERROR</h1>
+{{/if}}

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <title>Site</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+
+    <header>
+        <img src="/images/logo-2.jpg" alt="logo">
+        <div id="barreNav">
+            <nav>
+                <ul>
+                    <li><a href="/">Accueil</a></li>
+                    <li class="menu-deroulant">
+                        <a href="/tournaments">Liste Tournois</a>
+                    </li>
+                    {{#if session.isUserCoach}}
+                        <li><a href="/tournaments/create">Création Tournois</a></li>    
+                        
+                    {{/if}}
+                   
+                        <li><a href="/courts">Liste Terrain</a></li>
+                    {{#if session.user}}
+                        <li><a href="/courts/bookings">reservation</a></li>    
+                    {{/if}}
+                        <li><a href="/coaches/listcoaches">Liste Entraineur</a></li>
+                    {{#if condition}}
+                        <li><a href="">Message Entraineur</a></li>    
+                    {{/if}}
+
+                    {{#if session.user}}
+                        <li><a href="/discussions">Discussions</a></li>
+                    {{/if}}
+
+                    {{#if session.user}}
+                    <li><a class="authlink" href="/users/logout">Logout</a></li>
+                    {{else}}
+                    <li><a class="authlink" href="/users/login">Connexion</a></li>
+                    <li><a class="authlink" href="/users/register">S'enregistrer</a></li>
+                    {{/if}}
+                </ul>
+            </nav>
+
+
+    </header>
+    {{{body}}}
+    <footer>
+
+
+        <div id="groupe">
+            <p>Groupe 26</p>
+        </div>
+        <div id="groupe">
+            <p>notre equipe:</p>
+        </div>
+        <div id="the-names">
+            <ul>
+                <li>Abdellah El Haddaoui</li>
+                <li>Bilal Amaziane </li>
+                <li>Boubacar Bah</li>
+            </ul>
+        </div>
+        <p>Sponsorisé par VinciCOURT</p>
+    </footer>
+</body>
+
+</html>

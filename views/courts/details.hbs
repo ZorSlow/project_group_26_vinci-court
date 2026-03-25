@@ -1,0 +1,35 @@
+{{#if detailsCourt}}
+   <section id="table_courts" class="backgroundee">
+  <h1>Aperçu des terrains</h1>
+  <table>
+    <tr>
+      <th>id:</th>
+      <th>nom:</th>
+      <th>Type de sol:</th>
+      <th>localisation:</th>
+      <th>image:</th>
+    </tr>
+    <tr>
+      <th>{{detailsCourt.tennis_court_id}}</th>
+      <th>{{detailsCourt.name}}</th>
+      <th>{{detailsCourt.flooring_type}}</th>
+      <th>{{detailsCourt.location}}</th>
+      <th><img id="image_terrain" src="{{detailsCourt.picture_path}}"></th>
+    </tr>
+  </table>
+  <br>
+  <br>
+  {{#if session.user}}
+      <form method="POST" action="/courts/book">
+          <input type="date" id="start" name="date_booking" min="{{startDate}}" max="{{endDate}}"/>
+          <input name="tennis_court_id" value="{{detailsCourt.tennis_court_id}}" type="hidden">
+          <input name="user_id" value="{{session.user.user_id}}" type="hidden">
+          <button type="submit">reservation</button>
+      </form>
+  {{/if}}
+  </section>
+  {{else}}
+  <h1>Error</h1>
+  <br>
+  <h1>L'id de ce terrain n'existe pas </h1>
+{{/if}}

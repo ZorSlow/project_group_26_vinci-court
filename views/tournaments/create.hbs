@@ -1,0 +1,36 @@
+{{#if session.isUserCoach}}
+<section id="table_tournamentsCreate" class="backgrounde">
+    <h1>Création d'un tournoi</h1>
+    <form action="/tournaments/create" method="post" enctype="multipart/form-data">
+        <div>
+            <input type="hidden" name="userIdTournament">
+        </div>
+        <div>
+            <label>Nom du tournoi </label>
+            <input type="text" name="uniqueNameTournament">
+        </div>
+        <div>
+            <label>Bannière</label>
+            <input type="file" name="imageTournamentBanner">
+        </div>
+        <div>
+            <label for="Date">Date</label>
+            <input type="date" id="Date" name="dateTournament" min="{{minDate}}" value="{{minDate}}">
+        </div>
+        <div>
+            <input type="text" placeholder="Plus d'un participants requis" name="nbMaxParticipantsTournament">
+        </div>
+        <div>
+            <input type="submit" value="Envoyer">
+        </div>
+    </form>
+
+</section>
+{{/if}}
+<!--message d'erreurs page créations-->
+{{#if errorTournamentCreate}}
+<section>
+    <p class="error-message">{{ errorTournamentCreate}}</p>
+</section>
+
+{{/if}}
