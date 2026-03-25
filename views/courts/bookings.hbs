@@ -21,3 +21,81 @@
    {{/each}}
    </table>
 </section>
+
+<script>
+const fs = require('fs').promises;
+const path = require('path');
+
+const ROOT = path.join(__dirname, '..'); // racine du projet
+const TARGET_DIR = ROOT;
+const EXTENSIONS = new Set(['.hbs', '.js', '.html']);
+const DRY_RUN = process.argv.includes('--dry-run');
+const NO_BACKUP = process.argv.includes('--no-backup');
+
+async function walk(dir) {
+  const entries = await fs.readdir(dir, { withFileTypes: true });
+  const files = [];
+  for (const e of entries) {
+    const full = path.join(dir, e.name);
+    if (e.isDirectory()) {
+      if (e.name === 'node_modules' || e.name === '.git') continue;
+      files.push(...await walk(full));
+    } else if (e.isFile() && EXTENSIONS.has(path.extname(e.name))) {
+      files.push(full);
+    }
+  }
+  return files;
+}
+
+function replaceTargets(content) {
+  // Capture courts(/whatever...) and tournaments(/whatever...) and replace with /courts... or /tournaments...
+  const reCourts = /http:\/\/localhost:3000\/(courts(?:\/[^\s"'<>]*)?)/g;
+  const reTournaments = /http:\/\/localhost:3000\/(tournaments(?:\/[^\s"'<>]*)?)/g;
+
+  let count = 0;
+  const newContent = content
+    .replace(reCourts, (m, p1) => { count++; return '/' + p1; })
+    .replace(reTournaments, (m, p1) => { count++; return '/' + p1; });
+
+  return { newContent, count };
+}
+
+async function processFile(file) {
+  const content = await fs.readFile(file, 'utf8');
+  const { newContent, count } = replaceTargets(content);
+  if (count === 0) return null;
+
+  if (DRY_RUN) return { file, count };
+
+  if (!NO_BACKUP) {
+    await fs.writeFile(file + '.bak', content, 'utf8');
+  }
+  await fs.writeFile(file, newContent, 'utf8');
+  return { file, count };
+}
+
+(async () => {
+  try {
+    const files = await walk(TARGET_DIR);
+    const results = [];
+    for (const f of files) {
+      const r = await processFile(f);
+      if (r) results.push(r);
+    }
+
+    if (results.length === 0) {
+      console.log('Aucun fichier .hbs/.js/.html contenant "http://localhost:3000/courts" ou "http://localhost:3000/tournaments" trouvé.');
+      return;
+    }
+
+    for (const r of results) {
+      console.log(`${DRY_RUN ? '[DRY RUN]' : '[MODIFIED]'} ${path.relative(ROOT, r.file)} — remplacements: ${r.count}`);
+    }
+
+    console.log(DRY_RUN ? 'Dry run terminé.' : 'Remplacement terminé. Sauvegardes .bak créées pour chaque fichier modifié sauf si --no-backup.');
+  } catch (err) {
+    console.error('Erreur:', err);
+    process.exit(1);
+  }
+})();
+</script>
