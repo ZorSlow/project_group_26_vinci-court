@@ -24,7 +24,7 @@ async function walk(dir) {
 
 async function processFile(file) {
   const content = await fs.readFile(file, 'utf8');
-  // remplace / et /  -> '/'
+  // remplace http://localhost:3000/ et http://localhost:3000  -> '/'
   const re = /http:\/\/localhost:3000\/?/g;
   const matches = content.match(re);
   if (!matches) return null;
