@@ -1,100 +1,65 @@
-# Projet web 2024 - Groupe 26
+🎾 Vinci Court — Gestion de Complexe Sportif
+Vinci Court est une application web full-stack permettant la gestion complète d'un club de tennis : de la réservation de terrains à l'organisation de tournois, en passant par le suivi avec des coachs professionnels.
 
-Ce repository GitHub reprend le boilerplate du code de votre projet web, ou la base à partir de laquelle vous allez déveloper.
+🚀 Fonctionnalités Clés
+Gestion Utilisateurs : Système complet d'inscription et de connexion avec sessions sécurisées.
 
-## Apprentissage de Git et GitHub
+Réservations : Module de réservation de terrains avec vérification des disponibilités.
 
-Suivez le document proposé sur moodle pour apprendre à utiliser Git et GitHub durant votre projet.
+Tournois : Inscription des joueurs aux événements et affichage des détails spécifiques.
 
-## Installation du projet
+Annuaire des Coachs : Consultation des profils et biographies détaillées des entraîneurs.
 
-Si ce n'est pas encore fait, renommez l'un de fichiers `bd_install-french.sql` ou `db_install-english.sql` en `db_install.sql`, selon la langue que vous avez choisie pour l'interface de votre site web.
+Espace Admin : Gestion centralisée des ressources (terrains, tournois, membres).
 
-Lancez ensuite le script qui va créer le fichier de base de données et installer les dépendances de l'application. Commencez par ouvrir un terminal. Attention, il faut utiliser le terminal Git Bash sur Windows, au lieu de cmd ou de PowerShell.
+🛠️ Stack Technique
+Backend : Node.js & Express.js
 
-Si vous êtes sur windows, lancez la commande :
+Frontend : Moteur de templating Handlebars (HBS) & CSS3 (Design Responsive)
 
-```sh
-bash install-windows.sh
-```
+Base de données : SQLite via better-sqlite3
 
-Si vous êtes sur macOS ou linux, lancez la commande :
+Sécurité : Hachage des mots de passe avec bcrypt et gestion de sessions avec express-session.
 
-```sh
-bash install-unix.sh
-```
+📂 Architecture du Projet (MVC)
+Le projet est structuré selon le pattern Modèle-Vue-Contrôleur pour une maintenance facilitée :
 
-## Lancer le projet
+📂 /models : Logique de données et interactions avec la base SQLite.
 
-Une fois que le projet est préparé tel qu'expliqué dans la section précédente, vous pouvez le lancer avec la commande suivante :
+📂 /routes : Contrôleurs gérant la logique métier et les redirections.
 
-```sh
-npm start
-```
+📂 /views : Templates HBS pour le rendu dynamique des pages.
 
-## Préparation de la soumission
+📂 /public : Assets statiques (CSS, images optimisées, JS client).
 
-Lorsque vous voudrez soumettre votre projet, utilisez la commande suivante dans un terminal (Git Bash et pas cmd ou PowerShell sur Windows) ouvert à la racine du projet :
+⚙️ Installation et Lancement (Local)
+1. Cloner le dépôt
+Bash
+git clone https://github.com/ZorSlow/project_group_26_vinci-court.git
+cd project_group_26_vinci-court
+2. Configuration de la Base de Données
+Renommez bd_install-french.sql en db_install.sql à la racine, puis lancez le script d'installation :
 
-```bash
-bash prepare_submission.sh
-```
+Windows (Git Bash) : bash install-windows.sh
 
-Si votre projet est fonctionnel, cette commande crée un fichier `project_group_XX_FRISTNAME_LASTNAME.zip`. Autrement, la commande affiche une erreur dans le terminal.
+macOS / Linux : bash install-unix.sh
 
-# Vinci Court — Gestion de tournois
-
-Courte description
-- Application web de gestion de terrains et tournois (inscriptions, réservations, gestion coachs et joueurs).
-- Projet réalisé en équipe dans le cadre d'un module web — code propre, architecture MVC, attention à la sécurité et à l'UX.
-
-Démo
-- Capture d'écran : ./public/images/screenshot.png
-- Lien de la démo : https://github.com/ZorSlow/project_group_26_vinci-court
-
-Fonctionnalités principales
-- Gestion des utilisateurs (inscription / connexion / rôles)
-- Création et gestion de tournois
-- Réservation de terrains
-- Interface administrateur pour gérer coachs et disponibilités
-- Upload d'images et validations côté serveur
-
-Stack technique
-- Node.js 18, Express, Handlebars (hbs)
-- Base SQLite (better-sqlite3) pour stockage local
-- Authentification : bcrypt + express-session
-- Outils : nodemon, eslint
-
-Prérequis (local)
-- Node >= 18 (utiliser nvm)
-- Git, sqlite3 (CLI utile)
-- macOS / Linux / Windows (Git Bash)
-
-Installation rapide
-```bash
-git clone https://github.com/YOUR_GITHUB_USERNAME/vinci-court.git
-cd vinci-court
-# version recommandée de Node
-nvm use 18 || nvm install 18
+3. Démarrage
+Bash
 npm install
-# initialiser la base (fichier SQL fourni)
-mkdir -p db
-sqlite3 db/database.sqlite3 < db_install.sql
 npm start
-```
+L'application sera accessible sur http://localhost:3000.
 
-Commandes utiles
-- Lancer le serveur : npm start
-- Linter : npm test
-- Créer la DB depuis le script : bash install-unix.sh (mac/linux) ou bash install-windows.sh
+🔒 Focus sur la Sécurité
+Protection des routes : Utilisation de middlewares pour restreindre l'accès aux pages sensibles.
 
-Points à lire pour le recruteur
-- Architecture : dossier /models, /routes, /views
-- Sécurité : hachage des mots de passe (bcrypt), validation des entrées (validator)
-- Extensibilité : points d'extension pour ajout d'API REST ou intégration front moderne
+Intégrité des données : Validation des entrées formulaires côté serveur.
 
-Contribuer / Contact
-- Auteur : Boubacar Bah, Bilal Amaziane ,Abdellah El Haddaoui — GitHub: https://github.com/zorSlow
-- Email : boubacar_bah@outlook.be
-- Pour une démo ou accès au code complet, contacter via GitHub/Email.
+Liens Relatifs : Architecture réseau optimisée pour un déploiement sécurisé en production (pas de fuite d'IP ou de localhost).
 
+👥 Équipe & Contact
+Boubacar Bah - LinkedIn | GitHub
+
+Bilal Amaziane - GitHub
+
+Abdellah El Haddaoui - GitHub
