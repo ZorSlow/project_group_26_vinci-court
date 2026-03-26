@@ -88,7 +88,7 @@ app.listen(port, () => {
  * Section utilitaire : remplacement des URLs de développement dans les vues
  *
  * Ce script parcourt récursivement le dossier `views` et remplace dans les
- * attributs `href` et `action` toute occurrence de "http://localhost:3000/"
+ * attributs `href` et `action` toute occurrence de "/"
  * par "/" afin d'utiliser des liens relatifs (utile avant déploiement).
  *
  * Usage :
