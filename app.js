@@ -84,22 +84,3 @@ app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
 });
 
-/**
- * Section utilitaire : remplacement des URLs de développement dans les vues
- *
- * Ce script parcourt récursivement le dossier `views` et remplace dans les
- * attributs `href` et `action` toute occurrence de "/"
- * par "/" afin d'utiliser des liens relatifs (utile avant déploiement).
- *
- * Usage :
- *  - Dry run (ne modifie pas les fichiers) :
- *      node app.js --dry-run
- *  - Appliquer les modifications :
- *      node app.js
- *
- * Remarques importantes :
- *  - Le script est exécuté à la fin de ce fichier (après le démarrage du serveur).
- *    Pour éviter toute exécution accidentelle en production, il est recommandé de
- *    déplacer ce code dans scripts/replace-localhost.js et l'exécuter manuellement.
- *  - Toujours commit/sauvegarder avant d'exécuter afin de pouvoir revenir en arrière.
- */
